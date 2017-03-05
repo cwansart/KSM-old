@@ -1,0 +1,22 @@
+<a href="<?= $this->url('user', ['action' => 'add']) ?>">Benutzer hinzufügen</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Erstellt am</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+<?php foreach($users as $user) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($user->id) ?></td>
+        <td><?= $this->escapeHtml($user->name) ?></td>
+        <td><?= $this->escapeHtml($user->created_at) ?></td>
+        <td>
+            <a href="<?= $this->url('user', ['action' => 'edit', 'id' => $user->id]) ?>">bearbeiten</a>
+            <a href="<?= $this->url('user', ['action' => 'delete', 'id' => $user->id]) ?>">löschen</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

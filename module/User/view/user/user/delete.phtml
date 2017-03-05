@@ -1,0 +1,12 @@
+<p>
+    Bist du sicher, dass der Benutzer
+    <i><?= $this->escapeHtml($user->name) ?></i>
+    gelöscht werden soll?
+</p>
+
+<form action="<?=  $this->url('user', ['action' => 'delete', 'id' => $id]) ?>" method="post">
+<div class="form-group">
+    <input type="submit" class="btn btn-danger" name="del" value="ja">
+    <input type="submit" class="btn btn-success" name="del" value="nein">
+</div>
+</form>
