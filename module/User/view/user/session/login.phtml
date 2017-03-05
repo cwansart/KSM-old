@@ -10,11 +10,17 @@ $password->setAttribute('placeholder', 'Passwort');
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
 
-$form->setAttribute('action', $this->url('user', ['action' => 'add']));
+$form->setAttribute('action', $this->url('login'));
 $form->prepare();
 
 echo $this->form()->openTag($form);
 ?>
+
+<?php if(isset($incorrectCredentials) && $incorrectCredentials === true): ?>
+<div class="alert alert-danger" role="alert">
+    Die eingegebenen Benutzerdaten stimmen nicht überein.
+</div>
+<?php endif; ?>
 
 <div class="form-group">
     <?= $this->formLabel($name) ?>

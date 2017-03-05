@@ -10,6 +10,6 @@ INSERT INTO `users` (
     `password`
 ) VALUES (
     'root',
-    CONCAT('0x', HEX('$2y$10$WDxPBjwAa5V8xcAk.PyZcuUUwx95dgESUsOgh5mS4tK.vYoRSwAuG'))
+    '$2y$10$.YBmryTd851HCfIz1bPzEuk9db85ySJJTW18pg9qGtlAPh4zV980K'
     -- Change this password!
 );

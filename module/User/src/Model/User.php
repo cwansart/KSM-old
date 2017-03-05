@@ -4,9 +4,7 @@ namespace User\Model;
 use DomainException;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
-use Zend\Filter\ToInt;
 use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\Validator\StringLength;
 
@@ -32,44 +30,50 @@ class User
         throw new DomainException(__CLASS__ . ' does not support changing the input filter.');
     }
 
+    public static function getAddInputFilder()
+    {
+        $inputAddFilter = new InputFilter();
+        $inputAddFilter->add([
+            'name' => 'name',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputAddFilter->add([
+            'name' => 'password',
+            'required' => true,
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 8,
+                        'max' => 128,
+                    ],
+                ]
+            ],
+        ]);
+
+        return $inputAddFilter;
+    }
+
     public function getAddInputFilter()
     {
         if (!$this->inputAddFilter) {
-            $this->inputAddFilter = new InputFilter();
-
-            $this->inputAddFilter->add([
-                'name' => 'name',
-                'required' => true,
-                'filters' => [
-                    ['name' => StripTags::class],
-                    ['name' => StringTrim::class],
-                ],
-                'validators' => [
-                    [
-                        'name' => StringLength::class,
-                        'options' => [
-                            'encoding' => 'UTF-8',
-                            'min' => 1,
-                            'max' => 100,
-                        ],
-                    ]
-                ],
-            ]);
-
-            $this->inputEditFilter->add([
-                'name' => 'password',
-                'required' => true,
-                'validators' => [
-                    [
-                        'name' => StringLength::class,
-                        'options' => [
-                            'encoding' => 'UTF-8',
-                            'min' => 8,
-                            'max' => 128,
-                        ],
-                    ]
-                ],
-            ]);
+            $this->inputAddFilter = $this::getAddInputFilder();
         }
 
         return $this->inputAddFilter;

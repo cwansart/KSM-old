@@ -27,6 +27,20 @@ class UserTable
             throw new RuntimeException('Could not find row with id ' . $id);
         }
 
+//        $row->password = hex2bin(substr($row->password, 2));
+        return $row;
+    }
+
+    public function getUserByName(string $name)
+    {
+        $rowset = $this->tableGateway->select(['name' => $name]);
+        $row = $rowset->current();
+
+        if (!$row) {
+            throw new RuntimeException('Could not find row with name ' . $name);
+        }
+
+//        $row->password = hex2bin(substr($row->password, 2));
         return $row;
     }
 
@@ -47,12 +61,13 @@ class UserTable
         }
         $this->tableGateway->update($data, ['id' => $id]);
     }
-    
+
     public function deleteUser(int $id)
     {
-        if($id === 1) {
+        if ($id === 1) {
             throw new RuntimeException('Cannot delete user root.');
         }
         $this->tableGateway->delete(['id' => $id]);
     }
+
 }

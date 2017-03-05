@@ -90,7 +90,7 @@ class UserController extends AbstractActionController
 
         $user->id = $id;
         $this->table->saveUser($user);
-        return $this->redirect()->toRoute('user');
+        return $this->redirect()->toRoute('login');
     }
 
     public function deleteAction()
@@ -100,15 +100,15 @@ class UserController extends AbstractActionController
             $this->getResponse()->setStatusCode(404);
             return;
         }
-        
-        if($this->getRequest()->isPost()) {
-            if($this->getRequest()->getPost('del', 'nein') == 'ja') {
+
+        if ($this->getRequest()->isPost()) {
+            if ($this->getRequest()->getPost('del', 'nein') == 'ja') {
                 $this->table->deleteUser($id);
             }
-            
+
             return $this->redirect()->toRoute('user');
         }
-        
+
         return [
             'id' => $id,
             'user' => $this->table->getUser($id),
