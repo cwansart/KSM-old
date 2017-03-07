@@ -5,6 +5,8 @@ CREATE TABLE animals (
     date_of_birth VARCHAR(50), -- can be vague, that's why we have a varchar
     is_male BOOLEAN DEFAULT 1,
 
+    location_id INT,
+
     is_castrated BOOLEAN NOT NULL DEFAULT 0,
     castration_date TIMESTAMP,
 
@@ -19,9 +21,7 @@ CREATE TABLE animals (
     distinguishing_marks TEXT,
     comments TEXT,
 
-    location_id INT,
-
-    is_dead BOOLEAN NOT NULL DEFAULT 0,
+    deceased BOOLEAN NOT NULL DEFAULT 0,
     cause_of_death VARCHAR(100),
 
     is_indoor_cat BOOLEAN NOT NULL DEFAULT 0,
