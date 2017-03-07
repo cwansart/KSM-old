@@ -22,4 +22,5 @@ return [
     'Zend\Validator',
     'Application',
     'User',
+    'Animal',
 ];
