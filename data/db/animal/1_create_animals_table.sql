@@ -2,7 +2,7 @@ CREATE TABLE animals (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     race_id INT NOT NULL,
     color VARCHAR(50) NOT NULL,
-    birth_date VARCHAR(50), -- can be vague, that's why we have a varchar
+    date_of_birth VARCHAR(50), -- can be vague, that's why we have a varchar
     is_male BOOLEAN DEFAULT 1,
 
     is_castrated BOOLEAN NOT NULL DEFAULT 0,
