@@ -136,6 +136,8 @@ class Location
                 ]
             ],
         ]);
+        
+        return $inputFilter;
     }
 
     public function getArrayCopy()
