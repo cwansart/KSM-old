@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS sessions;
-
 CREATE TABLE sessions (
     user_id INT NOT NULL,
     session_id VARCHAR(100) NOT NULL,
