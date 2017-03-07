@@ -62,7 +62,7 @@ class AnimalTable
         }
 
         if (!$this->getAnimal($id)) {
-            throw new RuntimeException('Cannot update user with ' . $animal->name . '. Not found.');
+            throw new RuntimeException('Cannot update location with ' . $animal->name . '. Not found.');
         }
         $this->tableGateway->update($data, ['id' => $id]);
     }

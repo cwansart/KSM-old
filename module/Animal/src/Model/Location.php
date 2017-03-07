@@ -17,7 +17,8 @@ class Location
         $this->id = !empty($data['id']) ? $data['id'] : null;
         $this->name = !empty($data['name']) ? $data['name'] : null;
         $this->street = !empty($data['street']) ? $data['street'] : null;
-        $this->houseNumber = !empty($data['houseNumber']) ? $data['houseNumber'] : null;
+        $this->houseNumber = !empty($data['house_number']) ? $data['house_number'] : null;
+        $this->zipCode = !empty($data['zip_code']) ? $data['zip_code'] : null;
         $this->city = !empty($data['city']) ? $data['city'] : null;
         $this->country = !empty($data['country']) ? $data['country'] : null;
         $this->createdAt = !empty($data['created_at']) ? $data['created_at'] : null;
@@ -135,6 +136,19 @@ class Location
                 ]
             ],
         ]);
+    }
+
+    public function getArrayCopy()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'street' => $this->street,
+            'house_number' => $this->houseNumber,
+            'zip_code' => $this->zipCode,
+            'city' => $this->city,
+            'country' => $this->country,
+        ];
     }
 
 }
