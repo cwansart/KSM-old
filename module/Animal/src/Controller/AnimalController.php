@@ -33,7 +33,8 @@ class AnimalController extends AbstractActionController
         try {
             $animal = $this->table->getAnimal($id);
         } catch (RuntimeException $ex) {
-            return $this->redirect()->toRoute('animal');
+            $this->response->setStatusCode(404);
+            return;
         }
         
         return ['animal' => $animal];
