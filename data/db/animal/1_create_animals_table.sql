@@ -1,6 +1,7 @@
 CREATE TABLE animals (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    race_id INT NOT NULL,
+    breed VARCHAR(100),
+    name VARCHAR(50),
     color VARCHAR(50) NOT NULL,
     date_of_birth VARCHAR(50), -- can be vague, that's why we have a varchar
     is_male BOOLEAN DEFAULT 1,
@@ -26,6 +27,7 @@ CREATE TABLE animals (
 
     is_indoor_cat BOOLEAN NOT NULL DEFAULT 0,
     is_outdoor_cat BOOLEAN NOT NULL DEFAULT 1,
+    is_cat_friendly BOOLEAN NOT NULL DEFAULT 1,
     is_dog_friendly BOOLEAN NOT NULL DEFAULT 1,
     is_child_friendly BOOLEAN NOT NULL DEFAULT 1,
 
@@ -33,6 +35,5 @@ CREATE TABLE animals (
 
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (race_id) REFERENCES races(id),
     FOREIGN KEY (location_id) REFERENCES locations(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

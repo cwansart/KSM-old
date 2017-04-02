@@ -1,6 +1,11 @@
 <?php
 namespace Animal\Model;
 
+use Zend\InputFilter\InputFilter;
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
+use Zend\Validator\StringLength;
+
 class Location
 {
     public $id;

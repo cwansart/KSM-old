@@ -33,8 +33,8 @@ class AnimalTable
     public function saveAnimal(Animal $animal)
     {
         $data = [
-            'id' => $animal->id,
             'color' => $animal->color,
+            'name' => $animal->name,
             'date_of_birth' => $animal->dateOfBirth,
             'is_male' => $animal->isMale,
             'is_castrated' => $animal->isCastrated,
@@ -51,6 +51,7 @@ class AnimalTable
             'cause_of_death' => $animal->causeOfDeath,
             'is_indoor_cat' => $animal->isIndoorCat,
             'is_outdoor_cat' => $animal->isOutdoorCat,
+            'is_cat_friendly' => $animal->isCatFriendly,
             'is_dog_friendly' => $animal->isDogFriendly,
             'is_child_friendly' => $animal->isChildFriendly,
             'image_path' => $animal->imagePath,
@@ -65,6 +66,7 @@ class AnimalTable
             throw new RuntimeException('Cannot update location with ' . $animal->name . '. Not found.');
         }
         $this->tableGateway->update($data, ['id' => $id]);
+        return $id;
     }
 
     public function deleteAnimal(int $id)

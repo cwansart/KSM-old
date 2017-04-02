@@ -9,7 +9,6 @@ use Zend\Router\Http\Segment;
 use Zend\Router\Http\Literal;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Session\SessionManager;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [

@@ -11,7 +11,8 @@ use Zend\Validator\StringLength;
 class Animal
 {
     public $id;
-    public $race;
+    public $breed;
+    public $name;
     public $color;
     public $dateOfBirth;
     public $isMale;
@@ -30,20 +31,23 @@ class Animal
     public $causeOfDeath;
     public $isIndoorCat;
     public $isOutdoorCat;
+    public $isCatFriendly;
     public $isDogFriendly;
     public $isChildFriendly;
     public $imagePath;
     public $createdAt;
+    public $inputFilter;
 
     public function exchangeArray(array $data)
     {
         $this->id = !empty($data['id']) ? $data['id'] : null;
-        $this->race = !empty($data['race']) ? $data['race'] : null;
+        $this->breed = !empty($data['breed']) ? $data['breed'] : null;
+        $this->name = !empty($data['name']) ? $data['name'] : null;
         $this->color = !empty($data['color']) ? $data['color'] : null;
         $this->dateOfBirth = !empty($data['date_of_birth']) ? $data['date_of_birth'] : null;
-        $this->isMale = !empty($data['is_male']) ? $data['is_male'] : null;
+        $this->isMale = !empty($data['is_male']) ? (bool) $data['is_male'] : true;
         $this->location = !empty($data['location']) ? $data['location'] : null;
-        $this->isCastrated = !empty($data['is_castrated']) ? $data['is_castrated'] : null;
+        $this->isCastrated = !empty($data['is_castrated']) ? $data['is_castrated'] : false;
         $this->castrationDate = !empty($data['castration_date']) ? $data['castration_date'] : null;
         $this->firstVaccination = !empty($data['first_vaccation']) ? $data['first_vaccation'] : null;
         $this->secondVaccination = !empty($data['second_vaccation']) ? $data['second_vaccation'] : null;
@@ -53,12 +57,13 @@ class Animal
         $this->chip = !empty($data['chip']) ? $data['chip'] : null;
         $this->distinguishingMarks = !empty($data['distinguishing_marks']) ? $data['distinguishing_marks'] : null;
         $this->comments = !empty($data['comments']) ? $data['comments'] : null;
-        $this->deceased = !empty($data['deceased']) ? $data['deceased'] : null;
+        $this->deceased = !empty($data['deceased']) ? (bool) $data['deceased'] : false;
         $this->causeOfDeath = !empty($data['cause_of_death']) ? $data['cause_of_death'] : null;
-        $this->isIndoorCat = !empty($data['is_indoor_cat']) ? $data['is_indoor_cat'] : null;
-        $this->isOutdoorCat = !empty($data['is_outdoor_cat']) ? $data['is_outdoor_cat'] : null;
-        $this->isDogFriendly = !empty($data['is_dog_friendly']) ? $data['is_dog_friendly'] : null;
-        $this->isChildFriendly = !empty($data['is_child_friendly']) ? $data['is_child_friendly'] : null;
+        $this->isIndoorCat = !empty($data['is_indoor_cat']) ? (bool) $data['is_indoor_cat'] : false;
+        $this->isOutdoorCat = !empty($data['is_outdoor_cat']) ? (bool) $data['is_outdoor_cat'] : false;
+        $this->isCatFriendly = !empty($data['is_cat_friendly']) ? (bool) $data['is_cat_friendly'] : false;
+        $this->isDogFriendly = !empty($data['is_dog_friendly']) ? (bool) $data['is_dog_friendly'] : false;
+        $this->isChildFriendly = !empty($data['is_child_friendly']) ? (bool) $data['is_child_friendly'] : false;
         $this->imagePath = !empty($data['image_path']) ? $data['image_path'] : null;
         $this->createdAt = !empty($data['created_at']) ? $data['created_at'] : null;
     }
@@ -68,11 +73,15 @@ class Animal
         throw new DomainException(__CLASS__ . ' does not support changing the input filter.');
     }
 
-    public static function getInputFilter()
+    public function getInputFilter()
     {
+        if ($this->inputFilter) {
+            return $this->inputFilter;
+        }
+        
         $inputFilter = new InputFilter();
         $inputFilter->add([
-            'name' => 'race',
+            'name' => 'breed',
             'required' => true,
             'filters' => [
                 ['name' => StripTags::class],
@@ -85,6 +94,24 @@ class Animal
                         'encoding' => 'UTF-8',
                         'min' => 1,
                         'max' => 100,
+                    ],
+                ]
+            ],
+        ]);
+        
+        $inputFilter->add([
+            'name' => 'name',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 50,
                     ],
                 ]
             ],
@@ -129,12 +156,13 @@ class Animal
 
         $inputFilter->add([
             'name' => 'is-male',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -142,12 +170,13 @@ class Animal
 
         $inputFilter->add([
             'name' => 'is-castrated',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -262,12 +291,13 @@ class Animal
 
         $inputFilter->add([
             'name' => 'deceased',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -275,12 +305,13 @@ class Animal
 
         $inputFilter->add([
             'name' => 'deceased',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -297,12 +328,13 @@ class Animal
 
         $inputFilter->add([
             'name' => 'is-indoor-cat',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -310,25 +342,41 @@ class Animal
 
         $inputFilter->add([
             'name' => 'is-outdoor-cat',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
         ]);
 
         $inputFilter->add([
-            'name' => 'is-dog-friendly',
-            'required' => true,
-            'validators' => [
+            'name' => 'is-cat-friendly',
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
+                    ],
+                ]
+            ],
+        ]);
+        
+        $inputFilter->add([
+            'name' => 'is-dog-friendly',
+            'required' => false,
+            'filters' => [
+                [
+                    'name' => \Zend\Filter\Boolean::class,
+                    'options' => [
+                        'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -336,12 +384,13 @@ class Animal
 
         $inputFilter->add([
             'name' => 'is-child-friendly',
-            'required' => true,
-            'validators' => [
+            'required' => false,
+            'filters' => [
                 [
-                    'name' => Zend\Filter\Boolean::class,
+                    'name' => \Zend\Filter\Boolean::class,
                     'options' => [
                         'casting' => 'TRUE',
+                        'type' => 'integer',
                     ],
                 ]
             ],
@@ -349,8 +398,12 @@ class Animal
 
         // @TODO: add filter for image_path
 
-        $locationInputFilter = Location::getInputFilter();
-        $inputFilter->merge($locationInputFilter);
+        // We don't need the location for now...
+        // @TODO: add the location filter
+        //$locationInputFilter = Location::getInputFilter();
+        //$inputFilter->merge($locationInputFilter);
+        
+        $this->inputFilter = $inputFilter;
         return $inputFilter;
     }
 
@@ -358,6 +411,8 @@ class Animal
     {
         return [
             'id' => $this->id,
+            'breed' => $this->breed,
+            'name' => $this->name,
             'color' => $this->color,
             'date_of_birth' => $this->dateOfBirth,
             'is_male' => $this->isMale,
@@ -375,6 +430,7 @@ class Animal
             'cause_of_death' => $this->causeOfDeath,
             'is_indoor_cat' => $this->isIndoorCat,
             'is_outdoor_cat' => $this->isOutdoorCat,
+            'is_cat_friendly' => $this->isCatFriendly,
             'is_dog_friendly' => $this->isDogFriendly,
             'is_child_friendly' => $this->isChildFriendly,
             'image_path' => $this->imagePath,

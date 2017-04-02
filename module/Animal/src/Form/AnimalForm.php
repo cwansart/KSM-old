@@ -1,0 +1,284 @@
+<?php
+namespace Animal\Form;
+
+use Zend\Form\Element;
+use Zend\Form\Form;
+
+class AnimalForm extends Form
+{
+
+    public function __construct($name = null)
+    {
+        parent::__construct('animal');
+
+        $this->add([
+            'name' => 'breed',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Rasse',
+            ],
+        ]);
+        
+        $this->add([
+            'name' => 'name',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Name',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'color',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Farbe',
+            ]
+        ]);
+
+        $this->add([
+            'name' => 'date-of-birth',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Geburtsdatum',
+            ],
+        ]);
+
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-male',
+            'options' => [
+                'label' => 'Geschlecht',
+                'value_options' => [
+                    '1' => 'männlich',
+                    '0' => 'weiblich',
+                ],
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'location-name',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Name',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'location-street',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Straße',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'location-house-number',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Hausnummer',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'location-zip-code',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'PLZ',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'location-city',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Stand',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'location-country',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Land',
+            ],
+        ]);
+
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-castrated',
+            'options' => [
+                'label' => 'Ist kastriert?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'castration-date',
+            'type' => Element\Date::class,
+            'options' => [
+                'label' => 'Kastrationsdatum',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'first-vaccination',
+            'type' => Element\Date::class,
+            'options' => [
+                'label' => 'erste Impfung',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'second-vaccination',
+            'type' => Element\Date::class,
+            'options' => [
+                'label' => 'zweite Impfung',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'next-vaccination',
+            'type' => Element\Date::class,
+            'options' => [
+                'label' => 'nächste Impfung',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'tattoo-left',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Tätowierung Li',
+                'maxlength' => '5',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'tattoo-right',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Tätowierung Re',
+                'maxlength' => '5',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'chip',
+            'type' => Element\Number::class,
+            'options' => [
+                'label' => 'Chip (15 Zeichen)',
+                'maxlength' => '15',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'distinguishing-marks',
+            'type' => Element\Textarea::class,
+            'options' => [
+                'label' => 'besondere Kennzeichen',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'comments',
+            'type' => Element\Textarea::class,
+            'options' => [
+                'label' => 'Bemerkung',
+            ],
+        ]);
+
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'deceased',
+            'options' => [
+                'label' => 'Ist verstorben?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+        
+        $this->add([
+            'name' => 'cause-of-death',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Todesursache',
+            ],
+        ]);
+        
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-indoor-cat',
+            'options' => [
+                'label' => 'Ist eine Wohnungskatze?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+        
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-outdoor-cat',
+            'options' => [
+                'label' => 'Ist ein Freigänger?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+        
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-cat-friendly',
+            'options' => [
+                'label' => 'Ist katzenverträglich?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+        
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-dog-friendly',
+            'options' => [
+                'label' => 'Ist hundeveträglich?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+        
+        $this->add([
+            'type' => Element\Radio::class,
+            'name' => 'is-child-friendly',
+            'options' => [
+                'label' => 'Ist kinderverträglich?',
+                'value_options' => [
+                    '0' => 'nein',
+                    '1' => 'ja',
+                ],
+            ],
+        ]);
+        
+        $this->add([
+            'name' => 'submit',
+            'type' => 'submit',
+            'attributes' => [
+                'value' => 'speichern',
+            ],
+        ]);
+        
+        // @TODO: File upload field for "image-path"
+    }
+
+}

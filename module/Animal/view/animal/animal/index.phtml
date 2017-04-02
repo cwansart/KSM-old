@@ -1,1 +1,22 @@
-ANIMAL INDEX
+<a href="<?= $this->url('animal_add') ?>">Tier hinzufügen</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Erstellt am</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+<?php foreach($animals as $animal) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($user->id) ?></td>
+        <td><?= $this->escapeHtml($user->name) ?></td>
+        <td><?= $this->escapeHtml($user->created_at) ?></td>
+        <td>
+            <a href="<?= $this->url('animal', ['action' => 'edit', 'id' => $animal->id]) ?>">bearbeiten</a>
+            <a href="<?= $this->url('animal', ['action' => 'delete', 'id' => $animal->id]) ?>">löschen</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
