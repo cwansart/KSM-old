@@ -27,7 +27,6 @@ return [
                         'options' => [
                             'route' => '/add',
                             'defaults' => [
-                                'controller' => Controller\AnimalController::class,
                                 'action' => 'add'
                             ],
                         ],
@@ -36,9 +35,11 @@ return [
                         'type' => Segment::class,
                         'options' => [
                             'route' => '/:id',
+                            'constraints' => [
+                                'id'     => '[1-9]\d*',
+                            ],
                             'defaults' => [
-                                'controller' => Controller\AnimalController::class,
-                                'action' => 'show'
+                                'action' => 'show',
                             ],
                         ],
                     ],

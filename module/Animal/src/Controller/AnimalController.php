@@ -29,9 +29,6 @@ class AnimalController extends AbstractActionController
     public function showAction()
     {
         $id = $this->params()->fromRoute('id');
-        if ($id === null) {
-            return $this->redirect()->toRoute('animal');
-        }
         
         try {
             $animal = $this->table->getAnimal($id);
