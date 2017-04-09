@@ -10,12 +10,12 @@
     </thead>
 <?php foreach($animals as $animal) : ?>
     <tr>
-        <td><?= $this->escapeHtml($user->id) ?></td>
-        <td><?= $this->escapeHtml($user->name) ?></td>
-        <td><?= $this->escapeHtml($user->created_at) ?></td>
+        <td><?= $this->escapeHtml($animal->id) ?></td>
+        <td><?= $this->escapeHtml($animal->name) ?></td>
+        <td><?= $this->escapeHtml($animal->createdAt) ?></td>
         <td>
-            <a href="<?= $this->url('animal', ['action' => 'edit', 'id' => $animal->id]) ?>">bearbeiten</a>
-            <a href="<?= $this->url('animal', ['action' => 'delete', 'id' => $animal->id]) ?>">löschen</a>
+            <a href="<?= $this->url('animal/animal_edit', ['id' => $animal->id]) ?>">bearbeiten</a>
+            <?php /*<a href="<?= $this->url('animal_delete', ['id' => $animal->id]) ?>">löschen</a> */ ?>
         </td>
     </tr>
 <?php endforeach; ?>

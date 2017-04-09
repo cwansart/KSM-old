@@ -23,7 +23,8 @@ class AnimalController extends AbstractActionController
     
     public function indexAction()
     {
-        return [];
+        $animals = $this->table->fetchAll();
+        return ['animals' => $animals];
     }
     
     public function showAction()
