@@ -1,4 +1,4 @@
-<a href="<?= $this->url('animal/animal_add') ?>">Tier hinzufügen</a>
+<a href="<?= $this->url('animal/add') ?>">Tier hinzufügen</a>
 <table class="table">
     <thead>
         <tr>
@@ -14,7 +14,7 @@
         <td><?= $this->escapeHtml($animal->name) ?></td>
         <td><?= $this->escapeHtml($animal->createdAt) ?></td>
         <td>
-            <a href="<?= $this->url('animal/animal_edit', ['id' => $animal->id]) ?>">bearbeiten</a>
+            <a href="<?= $this->url('animal/edit', ['id' => $animal->id]) ?>">bearbeiten</a>
             <?php /*<a href="<?= $this->url('animal_delete', ['id' => $animal->id]) ?>">löschen</a> */ ?>
         </td>
     </tr>

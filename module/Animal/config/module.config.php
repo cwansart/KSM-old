@@ -12,7 +12,7 @@ return [
     'router' => [
         'routes' => [
             'animal' => [
-                'type'    => Segment::class,
+                'type'    => Literal::class,
                 'options' => [
                     'route'    => '/animal',
                     'defaults' => [
@@ -22,7 +22,7 @@ return [
                 ],
                 'may_terminate' => true,
                 'child_routes' => [
-                    'animal_add' => [
+                    'add' => [
                         'type' => Literal::class,
                         'options' => [
                             'route' => '/add',
@@ -31,7 +31,7 @@ return [
                             ],
                         ],
                     ],
-                    'animal_show' => [
+                    'show' => [
                         'type' => Segment::class,
                         'options' => [
                             'route' => '/:id',
@@ -43,7 +43,7 @@ return [
                             ],
                         ],
                     ],
-                    'animal_edit' => [
+                    'edit' => [
                         'type' => Segment::class,
                         'options' => [
                             'route' => '/edit/:id',

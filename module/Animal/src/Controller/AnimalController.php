@@ -92,6 +92,6 @@ class AnimalController extends AbstractActionController
         $formData['id'] = $id;
         $animal->exchangeArray($formData);
         $this->table->saveAnimal($animal);
-        return $this->redirect()->toRoute('animal/animal_show', ['id' => $id]);
+        return $this->redirect()->toRoute('animal/show', ['id' => $id]);
     }
 }
