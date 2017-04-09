@@ -12,7 +12,7 @@ return [
     'router' => [
         'routes' => [
             'animal' => [
-                'type'    => Literal::class,
+                'type'    => Segment::class,
                 'options' => [
                     'route'    => '/animal',
                     'defaults' => [
@@ -40,6 +40,18 @@ return [
                             ],
                             'defaults' => [
                                 'action' => 'show',
+                            ],
+                        ],
+                    ],
+                    'animal_edit' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/edit/:id',
+                            'constraints' => [
+                                'id'     => '[1-9]\d*',
+                            ],
+                            'defaults' => [
+                                'action' => 'edit',
                             ],
                         ],
                     ],

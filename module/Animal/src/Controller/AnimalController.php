@@ -32,7 +32,7 @@ class AnimalController extends AbstractActionController
         
         try {
             $animal = $this->table->getAnimal($id);
-        } catch (RuntimeException $ex) {
+        } catch (\Animal\Model\ModelNotFoundException $ex) {
             $this->response->setStatusCode(404);
             return;
         }
@@ -60,5 +60,37 @@ class AnimalController extends AbstractActionController
         $animal->exchangeArray($formData);
         $id = $this->table->saveAnimal($animal);
         return $this->redirect()->toRoute('animal', ['id' => $id]);
+    }
+
+    public function editAction()
+    {
+        $id = $this->params()->fromRoute('id');
+
+        try {
+            $animal = $this->table->getAnimal($id);
+        } catch (\Animal\Model\ModelNotFoundException $ex) {
+            $this->response->setStatusCode(404);
+            return;
+        }
+
+        $form = new AnimalForm();
+        $form->get('submit')->setValue('speichern');
+        if (!$this->request->isPost()) {
+            $form->bind($animal);
+            return ['form' => $form, 'id' => $id];
+        }
+        
+        $form->setInputFilter($animal->getInputFilter());
+        $form->setData($this->request->getPost());
+        if (!$form->isValid()) {
+            $form->bind($animal);
+            return ['form' => $form, 'id' => $id];
+        }
+        
+        $formData = $form->getData();
+        $formData['id'] = $id;
+        $animal->exchangeArray($formData);
+        $this->table->saveAnimal($animal);
+        return $this->redirect()->toRoute('animal/animal_show', ['id' => $id]);
     }
 }

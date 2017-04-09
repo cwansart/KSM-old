@@ -49,8 +49,15 @@ class AnimalForm extends Form
             'options' => [
                 'label' => 'Geschlecht',
                 'value_options' => [
-                    '1' => 'männlich',
-                    '0' => 'weiblich',
+                    [
+                        'value' => 'm',
+                        'label' => 'männlich',
+                        'selected' => true,
+                    ],
+                    [
+                        'value' => 'f',
+                        'label' => 'weiblich',
+                    ],
                 ],
             ],
         ]);
@@ -104,7 +111,7 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'is-castrated',
             'options' => [
                 'label' => 'Ist kastriert?',
@@ -191,14 +198,12 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'deceased',
             'options' => [
                 'label' => 'Ist verstorben?',
-                'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
-                ],
+                'checked_value' => '1',
+                'unchecked_value' => '0',
             ],
         ]);
         
@@ -211,62 +216,52 @@ class AnimalForm extends Form
         ]);
         
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'is-indoor-cat',
             'options' => [
                 'label' => 'Ist eine Wohnungskatze?',
-                'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
-                ],
+                'checked_value' => '1',
+                'unchecked_value' => '0',
             ],
         ]);
         
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'is-outdoor-cat',
             'options' => [
                 'label' => 'Ist ein Freigänger?',
-                'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
-                ],
+                'checked_value' => '1',
+                'unchecked_value' => '0',
             ],
         ]);
         
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'is-cat-friendly',
             'options' => [
                 'label' => 'Ist katzenverträglich?',
-                'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
-                ],
+                'checked_value' => '1',
+                'unchecked_value' => '0',
             ],
         ]);
         
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'is-dog-friendly',
             'options' => [
                 'label' => 'Ist hundeveträglich?',
-                'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
-                ],
+                'checked_value' => '1',
+                'unchecked_value' => '0',
             ],
         ]);
         
         $this->add([
-            'type' => Element\Radio::class,
+            'type' => Element\Checkbox::class,
             'name' => 'is-child-friendly',
             'options' => [
                 'label' => 'Ist kinderverträglich?',
-                'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
-                ],
+                'checked_value' => '1',
+                'unchecked_value' => '0',
             ],
         ]);
         

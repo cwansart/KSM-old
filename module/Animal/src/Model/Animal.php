@@ -45,7 +45,7 @@ class Animal
         $this->name = !empty($data['name']) ? $data['name'] : null;
         $this->color = !empty($data['color']) ? $data['color'] : null;
         $this->dateOfBirth = !empty($data['date_of_birth']) ? $data['date_of_birth'] : null;
-        $this->isMale = !empty($data['is_male']) ? (bool) $data['is_male'] : true;
+        $this->isMale = !empty($data['is_male']) ? $data['is_male'] : 'm';
         $this->location = !empty($data['location']) ? $data['location'] : null;
         $this->isCastrated = !empty($data['is_castrated']) ? $data['is_castrated'] : false;
         $this->castrationDate = !empty($data['castration_date']) ? $data['castration_date'] : null;
@@ -157,12 +157,12 @@ class Animal
         $inputFilter->add([
             'name' => 'is-male',
             'required' => false,
-            'filters' => [
+            'valdators' => [
                 [
-                    'name' => \Zend\Filter\Boolean::class,
-                    'options' => [
-                        'casting' => 'TRUE',
-                        'type' => 'integer',
+                    'name' => \Zend\Validator\InArray::class,
+                    'haystack' => [
+                        'm',
+                        'f',
                     ],
                 ]
             ],

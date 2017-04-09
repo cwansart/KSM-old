@@ -4,7 +4,7 @@ CREATE TABLE animals (
     name VARCHAR(50),
     color VARCHAR(50) NOT NULL,
     date_of_birth VARCHAR(50), -- can be vague, that's why we have a varchar
-    is_male BOOLEAN DEFAULT 1,
+    is_male CHAR(1) DEFAULT 'm',
 
     location_id INT,
 

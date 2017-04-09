@@ -24,7 +24,7 @@ class AnimalTable
         $row = $rowset->current();
 
         if (!$row) {
-            throw new RuntimeException('Could not find row with id ' . $id);
+            throw new ModelNotFoundException('Could not find row with id ' . $id);
         }
 
         return $row;
@@ -33,6 +33,7 @@ class AnimalTable
     public function saveAnimal(Animal $animal)
     {
         $data = [
+            'breed' => $animal->breed,
             'color' => $animal->color,
             'name' => $animal->name,
             'date_of_birth' => $animal->dateOfBirth,

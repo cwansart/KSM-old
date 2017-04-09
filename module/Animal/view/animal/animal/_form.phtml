@@ -1,0 +1,218 @@
+<?php
+$breed = $form->get('breed');
+$breed->setAttribute('class', 'form-control');
+$breed->setAttribute('placeholder', 'z. B. europäisch Kurzhaar');
+
+$name = $form->get('name');
+$name->setAttribute('class', 'form-control');
+$name->setAttribute('placeholder', 'Name der Katze');
+
+$color = $form->get('color');
+$color->setAttribute('class', 'form-control');
+$color->setAttribute('placeholder', 'z. B. braun gefleckt');
+
+$dateOfBirth = $form->get('date-of-birth');
+$dateOfBirth->setAttribute('class', 'form-control');
+$dateOfBirth->setAttribute('placeholder', 'z. B. 13.07.2013');
+
+$isMale = $form->get('is-male');
+
+$isCastrated = $form->get('is-castrated');
+
+$castrationDate = $form->get('castration-date');
+$castrationDate->setAttribute('class', 'form-control');
+$castrationDate->setAttribute('placeholder', 'z. B. 26.04.2016');
+
+$firstVaccination = $form->get('first-vaccination');
+$firstVaccination->setAttribute('class', 'form-control');
+$firstVaccination->setAttribute('placeholder', 'z. B. 10.01.2014');
+
+$secondVaccination = $form->get('second-vaccination');
+$secondVaccination->setAttribute('class', 'form-control');
+$secondVaccination->setAttribute('placeholder', 'z. B. 14.06.2014');
+
+$nextVaccination = $form->get('next-vaccination');
+$nextVaccination->setAttribute('class', 'form-control');
+$nextVaccination->setAttribute('placeholder', 'z. B. 20.08.2014');
+
+$tattooLeft = $form->get('tattoo-left');
+$tattooLeft->setAttribute('class', 'form-control');
+$tattooLeft->setAttribute('placeholder', 'ABC12');
+$tattooLeft->setAttribute('maxlength', 5);
+
+$tattooRight = $form->get('tattoo-right');
+$tattooRight->setAttribute('class', 'form-control');
+$tattooRight->setAttribute('placeholder', 'XYZ89');
+$tattooRight->setAttribute('maxlength', 5);
+
+$chip = $form->get('chip');
+$chip->setAttribute('class', 'form-control');
+$chip->setAttribute('placeholder', '123456789012345');
+$chip->setAttribute('maxlength', 15);
+
+$distinguishingMarks = $form->get('distinguishing-marks');
+$distinguishingMarks->setAttribute('class', 'form-control');
+$distinguishingMarks->setAttribute('placeholder', 'z. B.  weißer Fleck auf der Nase, Pfoten und Bauch weiß, schwarze Schwanzspitze');
+
+$comments = $form->get('comments');
+$comments->setAttribute('class', 'form-control');
+$comments->setAttribute('placeholder', 'z. B.  schwanzlos, dreibeinig oder linkes Vorderbein fehlt, Fiv und Leukose positiv, festgestellter Herzfehler');
+
+$deceased = $form->get('deceased');
+
+$causeOfDeath = $form->get('cause-of-death');
+$causeOfDeath->setAttribute('class', 'form-control');
+
+$isIndoorCat = $form->get('is-indoor-cat');
+$isOutdoorCat = $form->get('is-outdoor-cat');
+$isCatFriendly = $form->get('is-cat-friendly');
+$isDogFriendly = $form->get('is-dog-friendly');
+$isChildFriendly = $form->get('is-child-friendly');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$url = $id === null ? $this->url($action) : $this->url($action, ['id' => $id]);
+$form->setAttribute('action', $url);
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="form-group">
+    <?= $this->formLabel($breed) ?>
+    <?= $this->formElement($breed) ?>
+    <?= $this->formElementErrors()->render($breed, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($name) ?>
+    <?= $this->formElement($name) ?>
+    <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($color) ?>
+    <?= $this->formElement($color) ?>
+    <?= $this->formElementErrors()->render($color, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($dateOfBirth) ?>
+    <?= $this->formElement($dateOfBirth) ?>
+    <?= $this->formElementErrors()->render($dateOfBirth, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($dateOfBirth) ?>
+    <?= $this->formElement($dateOfBirth) ?>
+    <?= $this->formElementErrors()->render($dateOfBirth, ['class' => 'help-block']) ?>
+</div>
+
+<div class="checkbox">
+    <?= $this->formLabel($isMale) ?>
+    <?= $this->formElement($isMale) ?>
+    <?= $this->formElementErrors()->render($isMale, ['class' => 'help-block']) ?>
+</div>
+
+<div class="checkbox">
+    <?= $this->formLabel($isCastrated) ?>
+    <?= $this->formElement($isCastrated) ?>
+    <?= $this->formElementErrors()->render($isCastrated, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($castrationDate) ?>
+    <?= $this->formElement($castrationDate) ?>
+    <?= $this->formElementErrors()->render($dateOfBirth, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($firstVaccination) ?>
+    <?= $this->formElement($firstVaccination) ?>
+    <?= $this->formElementErrors()->render($firstVaccination, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($secondVaccination) ?>
+    <?= $this->formElement($secondVaccination) ?>
+    <?= $this->formElementErrors()->render($secondVaccination, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($nextVaccination) ?>
+    <?= $this->formElement($nextVaccination) ?>
+    <?= $this->formElementErrors()->render($nextVaccination, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($tattooLeft) ?>
+    <?= $this->formElement($tattooLeft) ?>
+    <?= $this->formElementErrors()->render($tattooLeft, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($tattooRight) ?>
+    <?= $this->formElement($tattooRight) ?>
+    <?= $this->formElementErrors()->render($tattooRight, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($chip) ?>
+    <?= $this->formElement($chip) ?>
+    <?= $this->formElementErrors()->render($chip, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($distinguishingMarks) ?>
+    <?= $this->formElement($distinguishingMarks) ?>
+    <?= $this->formElementErrors()->render($distinguishingMarks, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($comments) ?>
+    <?= $this->formElement($comments) ?>
+    <?= $this->formElementErrors()->render($comments, ['class' => 'help-block']) ?>
+</div>
+
+<div class="checkbox">
+    <?= $this->formLabel($deceased) ?>
+    <?= $this->formElement($deceased) ?>
+    <?= $this->formElementErrors()->render($deceased, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($causeOfDeath) ?>
+    <?= $this->formElement($causeOfDeath) ?>
+    <?= $this->formElementErrors()->render($causeOfDeath, ['class' => 'help-block']) ?>
+</div>
+
+<div class="checkbox">
+    <?= $this->formLabel($isIndoorCat) ?>
+    <?= $this->formElement($isIndoorCat) ?>
+    <?= $this->formElementErrors()->render($isIndoorCat, ['class' => 'help-block']) ?>
+</div>
+<div class="checkbox">
+    <?= $this->formLabel($isOutdoorCat) ?>
+    <?= $this->formElement($isOutdoorCat) ?>
+    <?= $this->formElementErrors()->render($isOutdoorCat, ['class' => 'help-block']) ?>
+</div>
+<div class="checkbox">
+    <?= $this->formLabel($isCatFriendly) ?>
+    <?= $this->formElement($isCatFriendly) ?>
+    <?= $this->formElementErrors()->render($isCatFriendly, ['class' => 'help-block']) ?>
+</div>
+<div class="checkbox">
+    <?= $this->formLabel($isDogFriendly) ?>
+    <?= $this->formElement($isDogFriendly) ?>
+    <?= $this->formElementErrors()->render($isDogFriendly, ['class' => 'help-block']) ?>
+</div>
+<div class="checkbox">
+    <?= $this->formLabel($isChildFriendly) ?>
+    <?= $this->formElement($isChildFriendly) ?>
+    <?= $this->formElementErrors()->render($isChildFriendly, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->form()->closeTag();
