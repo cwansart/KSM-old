@@ -1,5 +1,4 @@
 <?= $this->doctype() ?>
-
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -38,9 +37,9 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li <?= $this->url() === $this->url('home') ? 'class="active"' :''?>><a href="<?= $this->url('home') ?>">Übersicht</a></li>
-                        <li <?= $this->url() === $this->url('user') ? 'class="active"' :''?>><a href="<?= $this->url('user') ?>">Benutzer</a></li>
-                        <li <?= $this->url() === $this->url('animal') ? 'class="active"' :''?>><a href="<?= $this->url('animal') ?>">Katzenübersicht</a></li>
+                        <li <?= $_SERVER['REQUEST_URI'] === $this->url('home') ? 'class="active"' :''?>><a href="<?= $this->url('home') ?>">Übersicht</a></li>
+                        <li <?= $_SERVER['REQUEST_URI'] === $this->url('user') ? 'class="active"' :''?>><a href="<?= $this->url('user') ?>">Benutzer</a></li>
+                        <li <?= $_SERVER['REQUEST_URI'] === $this->url('animal') ? 'class="active"' :''?>><a href="<?= $this->url('animal') ?>">Katzenübersicht</a></li>
                     </ul>
                 </div>
             </div>
