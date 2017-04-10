@@ -109,15 +109,14 @@ echo $this->form()->openTag($form);
     <?= $this->formElementErrors()->render($dateOfBirth, ['class' => 'help-block']) ?>
 </div>
 
-<div class="checkbox">
+<div class="radio">
     <?= $this->formLabel($isMale) ?>
     <?= $this->formElement($isMale) ?>
     <?= $this->formElementErrors()->render($isMale, ['class' => 'help-block']) ?>
 </div>
 
 <div class="checkbox">
-    <?= $this->formLabel($isCastrated) ?>
-    <?= $this->formElement($isCastrated) ?>
+    <?= $this->formRow($isCastrated, 'append') ?>
     <?= $this->formElementErrors()->render($isCastrated, ['class' => 'help-block']) ?>
 </div>
 
@@ -176,8 +175,7 @@ echo $this->form()->openTag($form);
 </div>
 
 <div class="checkbox">
-    <?= $this->formLabel($deceased) ?>
-    <?= $this->formElement($deceased) ?>
+    <?= $this->formRow($deceased, 'append') ?>
     <?= $this->formElementErrors()->render($deceased, ['class' => 'help-block']) ?>
 </div>
 
@@ -188,28 +186,23 @@ echo $this->form()->openTag($form);
 </div>
 
 <div class="checkbox">
-    <?= $this->formLabel($isIndoorCat) ?>
-    <?= $this->formElement($isIndoorCat) ?>
+    <?= $this->formRow($isIndoorCat, 'append') ?>
     <?= $this->formElementErrors()->render($isIndoorCat, ['class' => 'help-block']) ?>
 </div>
 <div class="checkbox">
-    <?= $this->formLabel($isOutdoorCat) ?>
-    <?= $this->formElement($isOutdoorCat) ?>
+    <?= $this->formRow($isOutdoorCat, 'append') ?>
     <?= $this->formElementErrors()->render($isOutdoorCat, ['class' => 'help-block']) ?>
 </div>
 <div class="checkbox">
-    <?= $this->formLabel($isCatFriendly) ?>
-    <?= $this->formElement($isCatFriendly) ?>
+    <?= $this->formRow($isCatFriendly, 'append') ?>
     <?= $this->formElementErrors()->render($isCatFriendly, ['class' => 'help-block']) ?>
 </div>
 <div class="checkbox">
-    <?= $this->formLabel($isDogFriendly) ?>
-    <?= $this->formElement($isDogFriendly) ?>
+    <?= $this->formRow($isDogFriendly, 'append') ?>
     <?= $this->formElementErrors()->render($isDogFriendly, ['class' => 'help-block']) ?>
 </div>
 <div class="checkbox">
-    <?= $this->formLabel($isChildFriendly) ?>
-    <?= $this->formElement($isChildFriendly) ?>
+    <?= $this->formRow($isChildFriendly, 'append') ?>
     <?= $this->formElementErrors()->render($isChildFriendly, ['class' => 'help-block']) ?>
 </div>
 
