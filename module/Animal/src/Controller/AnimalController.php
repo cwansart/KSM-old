@@ -8,8 +8,9 @@
 namespace Animal\Controller;
 
 use RuntimeException;
-use Animal\Model\Animal;
 use Animal\Form\AnimalForm;
+use Animal\Form\AnimalDeleteForm;
+use Animal\Model\Animal;
 use Animal\Model\AnimalTable;
 use Zend\Mvc\Controller\AbstractActionController;
 
@@ -93,5 +94,25 @@ class AnimalController extends AbstractActionController
         $animal->exchangeArray($formData);
         $this->table->saveAnimal($animal);
         return $this->redirect()->toRoute('animal/show', ['id' => $id]);
+    }
+
+    public function deleteAction()
+    {
+        $id = $this->params()->fromRoute('id');
+        
+        $form = new AnimalDeleteForm();
+        if (!$this->request->isPost()) {
+            try {
+                $animal = $this->table->getAnimal($id);
+            } catch (\Animal\Model\ModelNotFoundException $ex) {
+                $this->response->setStatusCode(404);
+                return;
+            }
+            return ['form' => $form, 'animal' => $animal];
+        }
+
+        
+        $this->table->deleteAnimal($id);
+        return $this->redirect()->toRoute('animal');
     }
 }

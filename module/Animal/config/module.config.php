@@ -55,6 +55,18 @@ return [
                             ],
                         ],
                     ],
+                    'delete' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/delete/:id',
+                            'constraints' => [
+                                'id'     => '[1-9]\d*',
+                            ],
+                            'defaults' => [
+                                'action' => 'delete',
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
