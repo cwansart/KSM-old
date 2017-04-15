@@ -15,7 +15,6 @@
         <td><?= $this->escapeHtml($animal->createdAt) ?></td>
         <td>
             <a href="<?= $this->url('animal/edit', ['id' => $animal->id]) ?>">bearbeiten</a>
-            <a href="<?= $this->url('animal/delete', ['id' => $animal->id]) ?>">löschen</a>
         </td>
     </tr>
 <?php endforeach; ?>

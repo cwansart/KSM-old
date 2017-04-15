@@ -95,24 +95,4 @@ class AnimalController extends AbstractActionController
         $this->table->saveAnimal($animal);
         return $this->redirect()->toRoute('animal/show', ['id' => $id]);
     }
-
-    public function deleteAction()
-    {
-        $id = $this->params()->fromRoute('id');
-        
-        $form = new AnimalDeleteForm();
-        if (!$this->request->isPost()) {
-            try {
-                $animal = $this->table->getAnimal($id);
-            } catch (\Animal\Model\ModelNotFoundException $ex) {
-                $this->response->setStatusCode(404);
-                return;
-            }
-            return ['form' => $form, 'animal' => $animal];
-        }
-
-        
-        $this->table->deleteAnimal($id);
-        return $this->redirect()->toRoute('animal');
-    }
 }
