@@ -12,6 +12,14 @@ class AnimalForm extends Form
         parent::__construct('animal');
 
         $this->add([
+            'name' => 'registration-date',
+            'type' => Element\Date::class,
+            'options' => [
+                'label' => 'Registrationsdatum',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'breed',
             'type' => Element\Text::class,
             'options' => [

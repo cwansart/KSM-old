@@ -33,6 +33,7 @@ class AnimalTable
     public function saveAnimal(Animal $animal)
     {
         $data = [
+            'registration_date' => $animal->registrationDate,
             'breed' => $animal->breed,
             'color' => $animal->color,
             'name' => $animal->name,

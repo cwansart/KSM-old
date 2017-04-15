@@ -1,5 +1,6 @@
 CREATE TABLE animals (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    registration_date TIMESTAMP,
     breed VARCHAR(100),
     name VARCHAR(50),
     color VARCHAR(50) NOT NULL,

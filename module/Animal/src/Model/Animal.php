@@ -11,6 +11,7 @@ use Zend\Validator\StringLength;
 class Animal
 {
     public $id;
+    public $registrationDate;
     public $breed;
     public $name;
     public $color;
@@ -41,6 +42,7 @@ class Animal
     public function exchangeArray(array $data)
     {
         $this->id = !empty($data['id']) ? $data['id'] : null;
+        $this->registrationDate = !empty($data['registration_date']) ? $data['registration_date'] : null;
         $this->breed = !empty($data['breed']) ? $data['breed'] : null;
         $this->name = !empty($data['name']) ? $data['name'] : null;
         $this->color = !empty($data['color']) ? $data['color'] : null;
@@ -80,6 +82,16 @@ class Animal
         }
         
         $inputFilter = new InputFilter();
+        $inputFilter->add([
+            'name' => 'registration-date',
+            'required' => false,
+            'validators' => [
+                [
+                    'name' => Date::class,
+                ]
+            ],
+        ]);
+
         $inputFilter->add([
             'name' => 'breed',
             'required' => true,
@@ -411,6 +423,7 @@ class Animal
     {
         return [
             'id' => $this->id,
+            'registration_date' => $this->registrationDate,
             'breed' => $this->breed,
             'name' => $this->name,
             'color' => $this->color,
