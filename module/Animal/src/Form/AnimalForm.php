@@ -145,6 +145,14 @@ class AnimalForm extends Form
             ],
         ]);
 
+        $this->add([
+            'name' => 'distinguishing-marks',
+            'type' => Element\Textarea::class,
+            'options' => [
+                'label' => 'besondere Kennzeichen',
+            ],
+        ]);
+
 /*
         $this->add([
             'name' => 'castration-date',
@@ -202,14 +210,6 @@ class AnimalForm extends Form
             'options' => [
                 'label' => 'Chip (15 Zeichen)',
                 'maxlength' => '15',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'distinguishing-marks',
-            'type' => Element\Textarea::class,
-            'options' => [
-                'label' => 'besondere Kennzeichen',
             ],
         ]);
 

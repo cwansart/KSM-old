@@ -24,8 +24,11 @@ $dateOfBirth->setAttribute('class', 'form-control');
 $dateOfBirth->setAttribute('placeholder', 'z. B. 13.07.2013');
 
 $isMale = $form->get('is-male');
-
 $isCastrated = $form->get('is-castrated');
+
+$distinguishingMarks = $form->get('distinguishing-marks');
+$distinguishingMarks->setAttribute('class', 'form-control');
+$distinguishingMarks->setAttribute('placeholder', 'z. B.  weißer Fleck auf der Nase, Pfoten und Bauch weiß, schwarze Schwanzspitze');
 
 /*
 $castrationDate = $form->get('castration-date');
@@ -58,10 +61,6 @@ $chip = $form->get('chip');
 $chip->setAttribute('class', 'form-control');
 $chip->setAttribute('placeholder', '123456789012345');
 $chip->setAttribute('maxlength', 15);
-
-$distinguishingMarks = $form->get('distinguishing-marks');
-$distinguishingMarks->setAttribute('class', 'form-control');
-$distinguishingMarks->setAttribute('placeholder', 'z. B.  weißer Fleck auf der Nase, Pfoten und Bauch weiß, schwarze Schwanzspitze');
 
 $comments = $form->get('comments');
 $comments->setAttribute('class', 'form-control');
@@ -230,6 +229,14 @@ echo $this->form()->openTag($form);
                 <?= $this->formElementErrors()->render($locationCountry, ['class' => 'help-block']) ?>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"><?= $this->formLabel($distinguishingMarks) ?>:</div>
+    <div class="col-md-10">
+        <?= $this->formElement($distinguishingMarks) ?>
+        <?= $this->formElementErrors()->render($distinguishingMarks, ['class' => 'help-block']) ?>
     </div>
 </div>
 

@@ -326,6 +326,15 @@ class Animal
             ],
         ]);
 
+        $inputFilter->add([
+            'name' => 'distinguishing-marks',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+        ]);
+
 /*
         $inputFilter->add([
             'name' => 'castration-date',
@@ -413,15 +422,6 @@ class Animal
                 [
                     'name' => \Zend\Validator\Digits::class,
                 ]
-            ],
-        ]);
-
-        $inputFilter->add([
-            'name' => 'distinguishing-marks',
-            'required' => false,
-            'filters' => [
-                ['name' => StripTags::class],
-                ['name' => StringTrim::class],
             ],
         ]);
 
