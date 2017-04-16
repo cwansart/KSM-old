@@ -55,13 +55,14 @@ class AnimalController extends AbstractActionController
         $form->setInputFilter($animal->getInputFilter());
         $form->setData($this->request->getPost());
         if (!$form->isValid()) {
+            die(var_dump($form->getInputFilter()->getMessages()));
             return ['form' => $form];
         }
         
         $formData = $form->getData();
         $animal->exchangeArray($formData);
         $id = $this->table->saveAnimal($animal);
-        return $this->redirect()->toRoute('animal', ['id' => $id]);
+        return $this->redirect()->toRoute('animal/show', ['id' => $id]);
     }
 
     public function editAction()

@@ -20,6 +20,14 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
+            'name' => 'leave-date',
+            'type' => Element\Date::class,
+            'options' => [
+                'label' => 'Ausgangsdatum',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'breed',
             'type' => Element\Text::class,
             'options' => [
@@ -71,15 +79,15 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'name' => 'location-name',
+            'name' => 'location',
             'type' => Element\Text::class,
             'options' => [
-                'label' => 'Name',
+                'label' => 'Aufenthaltsort',
             ],
         ]);
 
         $this->add([
-            'name' => 'location-street',
+            'name' => 'street',
             'type' => Element\Text::class,
             'options' => [
                 'label' => 'Straße',
@@ -87,7 +95,7 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'name' => 'location-house-number',
+            'name' => 'house-number',
             'type' => Element\Text::class,
             'options' => [
                 'label' => 'Hausnummer',
@@ -95,7 +103,7 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'name' => 'location-zip-code',
+            'name' => 'zip-code',
             'type' => Element\Text::class,
             'options' => [
                 'label' => 'PLZ',
@@ -103,7 +111,7 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'name' => 'location-city',
+            'name' => 'city',
             'type' => Element\Text::class,
             'options' => [
                 'label' => 'Stand',
@@ -111,7 +119,7 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'name' => 'location-country',
+            'name' => 'country',
             'type' => Element\Text::class,
             'options' => [
                 'label' => 'Land',
@@ -119,17 +127,25 @@ class AnimalForm extends Form
         ]);
 
         $this->add([
-            'type' => Element\Checkbox::class,
+            'type' => Element\Radio::class,
             'name' => 'is-castrated',
             'options' => [
-                'label' => 'Ist kastriert?',
+                'label' => 'Kastriert',
                 'value_options' => [
-                    '0' => 'nein',
-                    '1' => 'ja',
+                    [
+                        'value' => 'y',
+                        'label' => 'ja',
+                    ],
+                    [
+                        'value' => 'n',
+                        'label' => 'nein',
+                        'selected' => true,
+                    ],
                 ],
             ],
         ]);
 
+/*
         $this->add([
             'name' => 'castration-date',
             'type' => Element\Date::class,
@@ -272,6 +288,7 @@ class AnimalForm extends Form
                 'unchecked_value' => '0',
             ],
         ]);
+*/
         
         $this->add([
             'name' => 'submit',
@@ -280,7 +297,7 @@ class AnimalForm extends Form
                 'value' => 'speichern',
             ],
         ]);
-        
+
         // @TODO: File upload field for "image-path"
     }
 

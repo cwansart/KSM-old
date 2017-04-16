@@ -38,6 +38,12 @@ class AnimalTable
             'color' => $animal->color,
             'name' => $animal->name,
             'date_of_birth' => $animal->dateOfBirth,
+            'location' => $animal->location,
+            'street' => $animal->street,
+            'house_number' => $animal->houseNumber,
+            'zip_code' => $animal->zip_code,
+            'city' => $animal->city,
+            'country' => $animal->country,
             'is_male' => $animal->isMale,
             'is_castrated' => $animal->isCastrated,
             'castration_date' => $animal->castrationDate,
@@ -65,7 +71,7 @@ class AnimalTable
         }
 
         if (!$this->getAnimal($id)) {
-            throw new RuntimeException('Cannot update location with ' . $animal->name . '. Not found.');
+            throw new RuntimeException('Cannot update animal with ' . $animal->name . '. Not found.');
         }
         $this->tableGateway->update($data, ['id' => $id]);
         return $id;

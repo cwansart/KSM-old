@@ -12,12 +12,17 @@ class Animal
 {
     public $id;
     public $registrationDate;
+    public $leaveDate;
     public $breed;
     public $name;
     public $color;
     public $dateOfBirth;
-    public $isMale;
     public $location;
+    public $street;
+    public $houseNumber;
+    public $city;
+    public $country;
+    public $isMale;
     public $isCastrated;
     public $castrationDate;
     public $firstVaccination;
@@ -43,13 +48,18 @@ class Animal
     {
         $this->id = !empty($data['id']) ? $data['id'] : null;
         $this->registrationDate = !empty($data['registration_date']) ? $data['registration_date'] : null;
+        $this->leaveDate = !empty($data['leave_date']) ? $data['leave_date'] : null;
         $this->breed = !empty($data['breed']) ? $data['breed'] : null;
         $this->name = !empty($data['name']) ? $data['name'] : null;
         $this->color = !empty($data['color']) ? $data['color'] : null;
         $this->dateOfBirth = !empty($data['date_of_birth']) ? $data['date_of_birth'] : null;
-        $this->isMale = !empty($data['is_male']) ? $data['is_male'] : 'm';
         $this->location = !empty($data['location']) ? $data['location'] : null;
-        $this->isCastrated = !empty($data['is_castrated']) ? $data['is_castrated'] : false;
+        $this->street = !empty($data['street']) ? $data['street'] : null;
+        $this->houseNumber = !empty($data['house_number']) ? $data['house_number'] : null;
+        $this->city = !empty($data['city']) ? $data['city'] : null;
+        $this->country = !empty($data['country']) ? $data['country'] : null;
+        $this->isMale = !empty($data['is_male']) ? $data['is_male'] : 'm';
+        $this->isCastrated = !empty($data['is_castrated']) ? $data['is_castrated'] : 'n';
         $this->castrationDate = !empty($data['castration_date']) ? $data['castration_date'] : null;
         $this->firstVaccination = !empty($data['first_vaccation']) ? $data['first_vaccation'] : null;
         $this->secondVaccination = !empty($data['second_vaccation']) ? $data['second_vaccation'] : null;
@@ -84,6 +94,16 @@ class Animal
         $inputFilter = new InputFilter();
         $inputFilter->add([
             'name' => 'registration-date',
+            'required' => false,
+            'validators' => [
+                [
+                    'name' => Date::class,
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'leave-date',
             'required' => false,
             'validators' => [
                 [
@@ -169,12 +189,122 @@ class Animal
         $inputFilter->add([
             'name' => 'is-male',
             'required' => false,
-            'valdators' => [
+            'validators' => [
                 [
                     'name' => \Zend\Validator\InArray::class,
-                    'haystack' => [
-                        'm',
-                        'f',
+                    'options' => [
+                        'haystack' => [
+                            'm',
+                            'f',
+                        ],
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'location',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 100,
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'street',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 30,
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'house-number',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 10,
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'zip-code',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 10,
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'city',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 30,
+                    ],
+                ]
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'country',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'max' => 60,
                     ],
                 ]
             ],
@@ -183,17 +313,20 @@ class Animal
         $inputFilter->add([
             'name' => 'is-castrated',
             'required' => false,
-            'filters' => [
+            'validators' => [
                 [
-                    'name' => \Zend\Filter\Boolean::class,
+                    'name' => \Zend\Validator\InArray::class,
                     'options' => [
-                        'casting' => 'TRUE',
-                        'type' => 'integer',
+                        'haystack' => [
+                            'y',
+                            'n',
+                        ],
                     ],
                 ]
             ],
         ]);
 
+/*
         $inputFilter->add([
             'name' => 'castration-date',
             'required' => false,
@@ -407,13 +540,9 @@ class Animal
                 ]
             ],
         ]);
+*/
 
         // @TODO: add filter for image_path
-
-        // We don't need the location for now...
-        // @TODO: add the location filter
-        //$locationInputFilter = Location::getInputFilter();
-        //$inputFilter->merge($locationInputFilter);
         
         $this->inputFilter = $inputFilter;
         return $inputFilter;
@@ -424,10 +553,17 @@ class Animal
         return [
             'id' => $this->id,
             'registration_date' => $this->registrationDate,
+            'leave_date' => $this->leaveDate,
             'breed' => $this->breed,
             'name' => $this->name,
             'color' => $this->color,
             'date_of_birth' => $this->dateOfBirth,
+            'location' => $this->location,
+            'street' => $this->street,
+            'house_number' => $this->houseNumber,
+            'zip_code' => $this->zip_code,
+            'city' => $this->city,
+            'country' => $this->country,
             'is_male' => $this->isMale,
             'is_castrated' => $this->isCastrated,
             'castration_date' => $this->castrationDate,

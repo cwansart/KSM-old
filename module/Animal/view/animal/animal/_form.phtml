@@ -3,6 +3,10 @@ $registrationDate = $form->get('registration-date');
 $registrationDate->setAttribute('class', 'form-control');
 $registrationDate->setAttribute('placeholder', 'z. B.: 15.04.2017');
 
+$leaveDate = $form->get('leave-date');
+$leaveDate->setAttribute('class', 'form-control');
+$leaveDate->setAttribute('placeholder', 'z. B.: 04.01.2020');
+
 $breed = $form->get('breed');
 $breed->setAttribute('class', 'form-control');
 $breed->setAttribute('placeholder', 'z. B. europäisch Kurzhaar');
@@ -23,6 +27,7 @@ $isMale = $form->get('is-male');
 
 $isCastrated = $form->get('is-castrated');
 
+/*
 $castrationDate = $form->get('castration-date');
 $castrationDate->setAttribute('class', 'form-control');
 $castrationDate->setAttribute('placeholder', 'z. B. 26.04.2016');
@@ -72,6 +77,32 @@ $isOutdoorCat = $form->get('is-outdoor-cat');
 $isCatFriendly = $form->get('is-cat-friendly');
 $isDogFriendly = $form->get('is-dog-friendly');
 $isChildFriendly = $form->get('is-child-friendly');
+*/
+
+// Location
+$locationName = $form->get('location');
+$locationName->setAttribute('class', 'form-control');
+$locationName->setAttribute('placeholder', 'Aufenthaltsname, z. B.: Tierheim');
+
+$locationStreet = $form->get('street');
+$locationStreet->setAttribute('class', 'form-control');
+$locationStreet->setAttribute('placeholder', 'Straße, z. B.: Musterstraße');
+
+$locationHouseNumber = $form->get('house-number');
+$locationHouseNumber->setAttribute('class', 'form-control');
+$locationHouseNumber->setAttribute('placeholder', 'Hausnummer, z. B.: 42');
+
+$locationZipCode = $form->get('zip-code');
+$locationZipCode->setAttribute('class', 'form-control');
+$locationZipCode->setAttribute('placeholder', 'PLZ, z. B.: 12345');
+
+$locationCity = $form->get('city');
+$locationCity->setAttribute('class', 'form-control');
+$locationCity->setAttribute('placeholder', 'Ort, z. B.: Musterort');
+
+$locationCountry = $form->get('country');
+$locationCountry->setAttribute('class', 'form-control');
+$locationCountry->setAttribute('placeholder', 'Land, z. B.: Deutschland');
 
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
@@ -140,12 +171,14 @@ echo $this->form()->openTag($form);
     </div>
 </div>
 
-<div class="checkbox">
-    <?= $this->formRow($isCastrated, 'append') ?>
-    <?= $this->formElementErrors()->render($isCastrated, ['class' => 'help-block']) ?>
+<div class="row">
+    <div class="col-md-2"><?= $this->formLabel($isCastrated) ?>:</div>
+    <div class="col-md-10">
+        <?= $this->formElement($isCastrated) ?>
+        <?= $this->formElementErrors()->render($isCastrated, ['class' => 'help-block']) ?>
+    </div>
 </div>
 
-<?php if ($action === 'animal/add'): ?>
 <div class="row">
     <div class="col-md-2"><?= $this->formLabel($registrationDate) ?>:</div>
     <div class="col-md-10">
@@ -153,8 +186,52 @@ echo $this->form()->openTag($form);
         <?= $this->formElementErrors()->render($registrationDate, ['class' => 'help-block']) ?>
     </div>
 </div>
-<?php endif; ?>
 
+<div class="row">
+    <div class="col-md-2"><?= $this->formLabel($leaveDate) ?>:</div>
+    <div class="col-md-10">
+        <?= $this->formElement($leaveDate) ?>
+        <?= $this->formElementErrors()->render($leaveDate, ['class' => 'help-block']) ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"><?= $this->formLabel($locationName) ?>:</div>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $this->formElement($locationName) ?>
+                <?= $this->formElementErrors()->render($locationName, ['class' => 'help-block']) ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <?= $this->formElement($locationStreet) ?>
+                <?= $this->formElementErrors()->render($locationStreet, ['class' => 'help-block']) ?>
+            </div>
+            <div class="col-md-4">
+                <?= $this->formElement($locationHouseNumber) ?>
+                <?= $this->formElementErrors()->render($locationHouseNumber, ['class' => 'help-block']) ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <?= $this->formElement($locationZipCode) ?>
+                <?= $this->formElementErrors()->render($locationZipCode, ['class' => 'help-block']) ?>
+            </div>
+            <div class="col-md-8">
+                <?= $this->formElement($locationCity) ?>
+                <?= $this->formElementErrors()->render($locationCity, ['class' => 'help-block']) ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <?= $this->formElement($locationCountry) ?>
+                <?= $this->formElementErrors()->render($locationCountry, ['class' => 'help-block']) ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <?php /*
